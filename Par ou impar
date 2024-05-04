@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <windows.h>
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+int main(int argc, char *argv[]) {
+
+	char par_ou_impar[5];
+	int jogada;
+	int jogada_maquina;
+	int soma;
+	int entrada = 0;
+	
+	srand(time(0));
+	
+	printf("Bem-vindo ao jogo de par ou impar\n");
+	printf("Regras:\n");
+	printf("Voce deve, primeiramente escolher se voce quer par ou impar\n");
+	printf("Apos isso voce deve escolher quantos dedos da sua mao voce quer jogar (1-10)\n");
+	printf("Digite 1 para começar o jogo, ou digite qualquer outra coisa para sair do codigo\n");
+	scanf("%d", &entrada);
+	
+	while(entrada == 1){
+		printf("Jogador, Escolha impar ou par(em minusculo)\n");
+		scanf("%s", par_ou_impar);
+		if(strcmp(par_ou_impar, "par") == 0){
+			printf("Você escolheu Par, agora escolha quantos dedos da mao voce quer levantar(0-10)\n");
+			scanf("%d", &jogada);
+			
+			if(jogada <0 || jogada>10){
+				printf("Voce digitou um numero invalido, lembre de digitar um numero de 1-10\n");
+				continue;
+			}
+			
+			jogada_maquina = rand()%11;
+			Sleep(2000);
+			printf("o computador levantou %d dedos\n", jogada_maquina);
+			Sleep(2000);
+			
+			soma = jogada+jogada_maquina;
+			
+			if(soma % 2 == 0){
+				printf("A soma das jogadas eh de %d, que eh um numero par!!, Voce ganhou parabens\n",soma);
+				break;
+			}
+			else if(soma % 2 == 1){
+				printf("A soma das jogadas eh de %d, que eh um numero impar!!, o computador ganhou\n",soma);
+				break;
+			}
+			else{
+				printf("Voce digitou um numero invalido, digite um numero de 1-10\n");
+				continue;
+			}
+		}		
+		else if(strcmp(par_ou_impar, "impar") == 0){
+			printf("Você escolheu impar, agora escolha quantos dedos da mao voce quer levantar(0-10)\n");
+			scanf("%d", &jogada);
+			
+			if(jogada <0 || jogada>10){
+				printf("Voce digitou um numero invalido, lembre de digitar um numero de 1-10\n");
+				continue;
+			}
+			
+			jogada_maquina = rand()%11;
+			Sleep(2000);
+			printf("o computador levantou %d dedos\n", jogada_maquina);
+			Sleep(2000);
+			
+			soma = jogada+jogada_maquina;
+			
+			if(soma % 2 == 0){
+				printf("A soma das jogadas eh de %d, que eh um numero par!!, o computador ganhou\n",soma);
+				break;
+			}
+			else if(soma % 2 == 1){
+				printf("A soma das jogadas eh de %d, que eh um numero impar!!, Voce ganhou parabens!!!\n",soma);
+				break;
+			}
+			else{
+				printf("Voce digitou um numero invalido, digite um numero de 1-10\n");
+				continue;
+			}
+		}
+		else{
+			printf("Escolha invalida, lembre de escrever em minusculo\n");
+			continue;
+		}
+	}
+	
+	return 0;
+}
