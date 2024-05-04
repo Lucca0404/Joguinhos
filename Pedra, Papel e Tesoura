@@ -80,7 +80,7 @@ int main(void) {
       
     vitorias_jogador = 0;
     vitorias_maquina = 0;
-	num_rodadas = 0;
+	num_rodadas = 1;
 	
     printf("Aperte 1 para sair do codigo ou qualquer outra coisa para continuar\n");
     scanf("%d", &entrada);
