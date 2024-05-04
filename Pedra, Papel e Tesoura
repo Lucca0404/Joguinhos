@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <windows.h>
+
+int main(void) {
+
+  char jogada[10];
+  char jogada_maquina[10];
+  int entrada = 0;
+  srand(time(0));
+  int vitorias_jogador = 0;
+  int vitorias_maquina = 0;
+  int num_rodadas = 1;
+
+  printf("Bem-vindo ao jogo do Pedra,Papel ou Tesoura\n");
+  printf("Regras: A unica regra eh que você deve digitar a jogada que quer fazer(Pedra,Papel ou Tesoura) tudo em minusculo\n");
+  printf("Nao escreva nenhuma palavra diferente disso >_<\n");
+  printf("A partida sera de voce contra a maquina e sera uma melhor de tres, Boa sorte!!!\n");
+  
+  while(entrada != 1){
+    
+    int valor_aleatorio = rand()%3;
+
+    if(valor_aleatorio == 0){
+      strcpy(jogada_maquina, "tesoura");
+    }
+    else if(valor_aleatorio == 1){
+      strcpy(jogada_maquina, "papel");
+    }
+    else{
+      strcpy(jogada_maquina, "pedra");
+    }
+
+    printf("Iniciando %dª Partida\n", num_rodadas);
+    Sleep(3000);
+    printf("Jogador, Digite a sua jogada(pedra,papel ou tesoura)\n");
+    scanf("%s", jogada);
+
+    if(strcmp(jogada,"tesoura") != 0 && strcmp(jogada,"pedra") != 0 && strcmp(jogada,"papel") != 0){
+       printf("Voce digitou uma jogada invalida, lembre de digitar em minusculo\n");
+       continue;
+    }
+    
+    printf("Voce decidiu jogar %s\n", jogada);
+    Sleep(2500);
+    printf("O computador escolheu jogar %s\n", jogada_maquina);
+    Sleep(2000);
+
+    if((strcmp(jogada,"tesoura") == 0 && strcmp(jogada_maquina,"papel") == 0) || 
+     (strcmp(jogada,"papel") == 0 && strcmp(jogada_maquina,"pedra") == 0) || 
+     (strcmp(jogada,"pedra") == 0 && strcmp(jogada_maquina,"tesoura") == 0)){
+      printf("Voce venceu, Parabens!!!!! +1 ponto\n");
+      vitorias_jogador ++;
+     }
+    else if(strcmp(jogada,jogada_maquina) == 0){
+      printf("Poxa, deu empate, vamos tentar denovo\n");
+     }
+    else{
+      printf("Computador venceu, Fez o minimo +1 ponto pra ele\n");
+      vitorias_maquina++;
+     }
+     
+	Sleep(2000);
+    num_rodadas++;
+    
+    if(vitorias_jogador < 2 && vitorias_maquina < 2){
+      printf("Proxima rodada\n\n");
+      continue;
+    }
+    else{
+    	if(vitorias_jogador > vitorias_maquina){
+    		printf("Temos um vencedor!!, parabens jogador\n");
+    	}
+    	else{
+    		printf("Temos um vencedor!!, parabens computador\n");
+    	}
+    }
+      
+    vitorias_jogador = 0;
+    vitorias_maquina = 0;
+	num_rodadas = 0;
+	
+    printf("Aperte 1 para sair do codigo ou qualquer outra coisa para continuar\n");
+    scanf("%d", &entrada);
+	
+  }
+  
+  return 0;
+}
